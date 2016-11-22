@@ -130,6 +130,7 @@ public class Story {
         story.setLikesCount(userData.optInt("likes_count"));
         story.setCommentCount(userData.optInt("comment_count"));
         story.setDb(userData.optString("db"));
+        story.setSi(userData.optString("si"));
         story.setUrl(userData.optString("url"));
         story.setType(userData.optString("type"));
         story.setLike_flag(userData.getBoolean("like_flag"));
@@ -140,5 +141,15 @@ public class Story {
       e.printStackTrace();
     }
     return storyArrayList;
+  }
+
+  public Story getStory(String id, Context context){
+    ArrayList<Story> storyArrayList = getStoryList(context);
+    for (Story story: storyArrayList) {
+      if(id.equalsIgnoreCase(story.getId())){
+        return  story;
+      }
+    }
+    return null;
   }
 }
