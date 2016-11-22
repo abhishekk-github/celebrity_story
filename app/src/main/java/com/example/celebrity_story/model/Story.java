@@ -143,7 +143,7 @@ public class Story {
     return storyArrayList;
   }
 
-  public Story getStory(String id, Context context){
+  public static Story getStory(Context context, String id){
     ArrayList<Story> storyArrayList = getStoryList(context);
     for (Story story: storyArrayList) {
       if(id.equalsIgnoreCase(story.getId())){
