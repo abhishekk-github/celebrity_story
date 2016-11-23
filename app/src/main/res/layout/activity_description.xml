@@ -33,12 +33,12 @@
             android:id="@+id/imgBackdrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#20000000" />
+            android:background="#20000000"/>
 
       </FrameLayout>
 
@@ -54,13 +54,65 @@
 
   <include layout="@layout/content_description"/>
 
+
+  <FrameLayout
+      android:id="@+id/bottom_user_frame_layout"
+      android:layout_width="match_parent"
+      android:layout_height="120dp"
+      android:orientation="vertical"
+      android:layout_gravity="bottom"
+      android:background="#FFFFFF"
+  >
+    <RelativeLayout
+        android:id="@+id/bottom_user_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <ImageView
+          android:id="@+id/user_image"
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentTop="true"
+          android:layout_margin="6dp"
+          android:background="@drawable/img"/>
+
+      <TextView
+          android:id="@+id/user_info"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="User info"
+          android:layout_marginLeft="24dp"
+          android:layout_marginRight="24dp"
+          android:layout_below="@+id/user_image" android:layout_alignStart="@+id/user_image"/>
+      <TextView
+          android:id="@+id/user_follow"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="follow"
+          android:layout_marginLeft="24dp" android:layout_marginRight="24dp"
+          android:layout_centerVertical="true" android:layout_alignParentEnd="true"/>
+      <TextView
+          android:id="@+id/user_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="User Name"
+          android:textSize="16sp"
+          android:layout_marginLeft="24dp" android:layout_marginRight="24dp"
+          android:layout_alignTop="@+id/user_image" android:layout_toEndOf="@+id/user_image"
+          android:layout_marginTop="11dp"/>
+
+
+    </RelativeLayout>
+  </FrameLayout>
+
   <android.support.design.widget.FloatingActionButton
       android:id="@+id/fab"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/fab_margin"
-      app:layout_anchor="@id/app_bar"
-      app:layout_anchorGravity="bottom|end"
-      app:srcCompat="@drawable/ic_favorite_black_24dp"/>
+      app:layout_anchor="@id/bottom_user_frame_layout"
+      app:layout_anchorGravity="top|end"
+      app:srcCompat="@drawable/ic_favorite_border_black_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

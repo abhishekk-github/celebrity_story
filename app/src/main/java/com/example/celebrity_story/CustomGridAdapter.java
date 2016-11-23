@@ -60,52 +60,55 @@ public class CustomGridAdapter extends BaseAdapter {
     LayoutInflater inflater = (LayoutInflater) context
         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-    View gridView;
+    ViewHolder gridView;
 
     if (convertView == null) {
 
-      gridView = new View(context);
+      gridView = new ViewHolder();
 
       // get layout from grid_item.xml ( Defined Below )
 
-      gridView = inflater.inflate( R.layout.grid_item , null);
+      convertView = inflater.inflate( R.layout.grid_item , null);
 
       // set value into textview
-
-      CardView cardView = (CardView) gridView.findViewById(R.id.item_card);
-      TextView title = (TextView) gridView
+      gridView.mCardView = (CardView) convertView.findViewById(R.id.item_card);
+      gridView.title = (TextView) convertView
           .findViewById(R.id.item_title);
 
-      TextView likes = (TextView) gridView
+      gridView.likes = (TextView) convertView
           .findViewById(R.id.item_likes);
 
-      TextView comment = (TextView) gridView
+      gridView.comment = (TextView) convertView
           .findViewById(R.id.item_comment);
 
 
       // set image based on selected text
 
-      ImageView imageView = (ImageView) gridView
+      gridView.mImageView= (ImageView) convertView
           .findViewById(R.id.item_imageView);
-
-      title.setText(mStories.get(position).getTitle());
-      likes.setText(mStories.get(position).getLikesCount() + " likes");
-      comment.setText(mStories.get(position).getCommentCount() + " comments");
-      Picasso.with(context).setLoggingEnabled(true);
-      Picasso.with(context)
-          .load(mStories.get(position).getSi())
-          .error(R.drawable.dummyimage)
-          .resize(200,270)
-          .into(imageView);
-
       int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
       int randomAndroidColor = androidColors[new Random().nextInt(8)];
-      cardView.setCardBackgroundColor(randomAndroidColor);
+      gridView.mCardView.setCardBackgroundColor(randomAndroidColor);
+      convertView.setTag(gridView);
     } else {
-
-      gridView = convertView;
+      gridView = (ViewHolder) convertView.getTag();
     }
+    gridView.title.setText(mStories.get(position).getTitle());
+    gridView.likes.setText(mStories.get(position).getLikesCount() + " likes");
+    gridView.comment.setText(mStories.get(position).getCommentCount() + " comments");
+    Picasso.with(context).setLoggingEnabled(true);
+    Picasso.with(context)
+        .load(mStories.get(position).getSi())
+        .error(R.drawable.dummyimage)
+        .resize(200,270)
+        .into(gridView.mImageView);
 
-    return gridView;
+    return convertView;
+  }
+
+  static class ViewHolder{
+    TextView title,likes,comment;
+    CardView mCardView;
+    ImageView mImageView;
   }
 }

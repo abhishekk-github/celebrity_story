@@ -129,7 +129,7 @@ public class User {
     return userList;
   }
 
-  public User getUser(String id, Context context){
+  public static User getUser(String id, Context context){
     ArrayList<User> userArrayList = getUserList(context);
     for (User user: userArrayList) {
       if(id.equalsIgnoreCase(user.getId())){
