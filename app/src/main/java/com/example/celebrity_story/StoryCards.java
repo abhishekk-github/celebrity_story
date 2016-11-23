@@ -1,7 +1,9 @@
 package com.example.celebrity_story;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,7 +32,14 @@ public class StoryCards extends AppCompatActivity {
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(StoryCards.this,DescriptionActivity.class);
         intent.putExtra("StoryID",mStories.get(position).getId());
-        startActivity(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+          ActivityOptionsCompat options = ActivityOptionsCompat.
+              makeSceneTransitionAnimation(StoryCards.this, view, getString(R.string.transation_animation));
+          startActivity(intent, options.toBundle());
+        }
+        else {
+          startActivity(intent);
+        }
       }
     });
 

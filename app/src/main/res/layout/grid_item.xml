@@ -15,6 +15,7 @@
         android:layout_height="260dp"
         android:id="@+id/item_imageView"
         android:scaleType="centerCrop"
+        android:transitionName="@string/transation_animation"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"/>
     <RelativeLayout
